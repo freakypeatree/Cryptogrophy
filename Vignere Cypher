@@ -1,26 +1,61 @@
 
-'''finds input for cypher'''
+print("encrypting or decrypting  type either e or d")
 
-alphabet = "abcdefghijklmnopqrstuvwxyz"
-print("Type plaintext word")
-plaintext = input()
-print("Type cypher key")
-key = input()
+b = input()
 
 
-''' Shifts through alphabet for encrypted letter'''
-def shiftThrough(a,b):
-    i = (alphabet.find(a) + alphabet.find(b)) % 26
-    return alphabet[i]
+if b == "e" :
+    '''finds input for cypher'''
+
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    print("Type plaintext word")
+    plaintext = input()
+    print("Type cypher key")
+    key = input()
 
 
-'''gives encrypted message'''
-def encodedV ( a , b ):
-    k = ""
-    for i in range(len(a)):
-        k = k + shiftThrough(a[i],b[i%len(key)])
-    return k
+    ''' Shifts through alphabet for encrypted letter'''
+    def shiftThrough(a,b):
+        i = (alphabet.find(a) + alphabet.find(b)) % 26
+        return alphabet[i]
 
-''' outputs cyphered text'''    
-cypherText = encodedV( plaintext , key )
-print(cypherText)
+
+    '''gives encrypted message'''
+    def encodedV ( a , b ):
+        k = ""
+        for i in range(len(a)):
+            k = k + shiftThrough(a[i],b[i%len(key)])
+        return k
+
+    ''' outputs cyphered text'''    
+    cypherText = encodedV( plaintext , key )
+    print("cyphered text: " + cypherText)
+    
+    
+    
+    
+    
+else:
+
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    print("Type cyphertext word")
+    cypherText = input()
+    print("Type cypher key")
+    key = input()
+    
+    
+    ''' Shifts through alphabet for decrypted letter'''
+    def shiftThrough(a,b):
+        i = (26 + (alphabet.find(a) - alphabet.find(b))) % 26
+        return alphabet[i]
+
+    '''gives decrypted message'''
+    def decodedV ( a , b ):
+        k = ""
+        for i in range(len(a)):
+            k = k + shiftThrough(a[i],b[i%len(key)])
+        return k
+
+    ''' outputs decyphered text'''    
+    plaintext = decodedV( cypherText , key )
+    print("decypted message: " + plaintext)
